@@ -52,10 +52,10 @@ public class PortfolioData : IPortfolioData
     public IReadOnlyList<Project> Projects { get; } = new[]
     {
         new Project("Gestión Catálogo — TP Final Nivel 3",
-            "Aplicación web con arquitectura multicapa en ASP.NET Web Forms, C# y SQL Server. Autenticación, catálogo de productos, categorías y panel de administración completo.",
+            "Aplicación web con arquitectura multicapa en ASP.NET Web Forms, C# y SQL Server. Autenticación, catálogo de productos, categorías y panel de administración completo. Demo online: registrate con cualquier email y contraseña.",
             new[] { "ASP.NET Web Forms", "C#", "SQL Server", "Bootstrap" },
             "https://github.com/Blan25ga/tp-final-nivel3-blanco-gabriel",
-            null,
+            "http://www.gestioncatalogo-tpfinal-nivel3.somee.com",
             "/images/projects/catalogo-tp3.jpg"),
         new Project("CatalogoApp Desktop",
             "Sistema de escritorio para gestión de artículos, marcas y categorías. Arquitectura en capas (Dominio, Negocio, Presentación) con ADO.NET.",
