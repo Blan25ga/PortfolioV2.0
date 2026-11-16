@@ -268,8 +268,22 @@ body {
 
 .flip-front { background: var(--glass-bg); }
 
-.flip-hint { color: var(--text-muted); font-size: 0.95rem; transition: var(--ease); }
-.flip-card:hover .flip-hint { color: var(--accent-cyan); }
+.flip-hint { 
+    color: var(--accent-cyan); 
+    font-size: 0.8rem; 
+    background: rgba(56, 189, 248, 0.1); 
+    padding: 0.2rem 0.6rem; 
+    border-radius: 20px; 
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--ease); 
+}
+.flip-card:hover .flip-hint { 
+    background: rgba(56, 189, 248, 0.2); 
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
 
 .flip-back {
     transform: rotateY(180deg);
