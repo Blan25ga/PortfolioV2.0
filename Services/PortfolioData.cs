@@ -144,3 +144,4 @@ public class PortfolioData : IPortfolioData
         new Certification("Inglés intensivo y competencias globales", "—", "Certificado")
     };
 }
+
