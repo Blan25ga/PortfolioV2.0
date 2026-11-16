@@ -1,4 +1,4 @@
-﻿using PortfolioV2._0.Models;
+using PortfolioV2._0.Models;
 
 namespace PortfolioV2._0.Services;
 
@@ -105,12 +105,6 @@ public class PortfolioData : IPortfolioData
             null,
             "https://covid19-infoweb.netlify.app/",
             "/images/projects/covid19.jpg"),
-        new Project("Portafolio Web Personal (v1)",
-            "Primera versión del portafolio personal: presentación de trayectoria, stack y proyectos.",
-            new[] { "HTML5", "CSS3", "JavaScript" },
-            "https://github.com/Blan25ga/portfolio-act",
-            "https://portafolio-actualizado.netlify.app/",
-            "/images/projects/portfolio-act.jpg"),
         new Project("Mis Certificados",
             "Repositorio oficial con la colección de certificaciones y credenciales en desarrollo de software.",
             new[] { "C# N1–N3", "Certificaciones" },
