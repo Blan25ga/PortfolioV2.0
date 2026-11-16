@@ -40,3 +40,6 @@ artifacts/
 *.cache
 *.config
 *.runtimeconfig.json
+
+# Local Netlify folder
+.netlify
