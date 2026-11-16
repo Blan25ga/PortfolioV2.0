@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Flip cards: click / Enter / Space toggles the project preview.
+document.addEventListener('click', function (e) {
+    var card = e.target.closest('.flip-card');
+    if (!card || e.target.closest('a')) return;
+    toggle(card);
+});
 
-// Write your JavaScript code.
+document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest('.flip-card');
+    if (!card) return;
+    e.preventDefault();
+    toggle(card);
+});
+
+function toggle(card) {
+    var flipped = card.classList.toggle('is-flipped');
+    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+}

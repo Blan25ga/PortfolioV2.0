@@ -1,32 +1,169 @@
 ﻿@page
 @model IndexModel
+@inject PortfolioV2._0.Services.IPortfolioData Data
 @{
     ViewData["Title"] = "Inicio";
 }
 
-<div class="row align-items-center mt-5">
-    <div class="col-lg-12">
-        <div class="hero-glass-card mb-5">
-            <h1 class="display-4 fw-bold" style="color: #fff;">Gabriel Hernán Blanco</h1>
-            <p class="lead text-info">FullStack .NET Developer | C# · ASP.NET · SQL Server</p>
-            <p class="text-muted">Desarrollador FullStack especializándome en C#, ASP.NET y SQL Server. Background en liderazgo de equipos (ex Subgerente de Operaciones) y experiencia internacional en Australia (2023–2024).</p>
-            <a href="https://github.com/Blan25ga" target="_blank" class="btn btn-outline-success mt-3">Ver GitHub</a>
+<section class="hero py-5">
+    <div class="container">
+        <div class="hero-glass-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="eyebrow"><i class="bi bi-code-slash me-1"></i> Facet Glass Edition</div>
+                    <h1 class="hero-title">@Data.Name</h1>
+                    <p class="hero-role">@Data.Role &mdash; C# · ASP.NET · SQL Server</p>
+                    <p class="hero-subtitle">@Data.Bio</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="glass-btn" href="#contacto"><i class="bi bi-send-fill"></i> Contactar</a>
+                        <a class="glass-btn glass-btn-outline" href="@Data.GitHub" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+                        <a class="glass-btn glass-btn-outline" href="@Data.LinkedIn" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="@Data.AvatarUrl" alt="@Data.Name" class="avatar" />
+                    <div class="mt-3 small text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>@Data.Location</div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<h2 class="text-white mb-4">Proyectos Destacados</h2>
-<div class="row g-4">
-    <div class="col-md-6">
-        <div class="shard h-100">
-            <h4>Gestión Catálogo (TP Final Nivel 3)</h4>
-            <p class="text-muted small">ASP.NET Web Forms, C#, SQL Server y Bootstrap.</p>
+<section class="py-4" id="stack">
+    <div class="container">
+        <div class="section-heading text-center">
+            <span class="eyebrow">Stack Tecnológico</span>
+            <h2 class="section-title">Ecosistema .NET &amp; Web</h2>
+        </div>
+        <div class="row g-4">
+            @foreach (var group in Data.Tech)
+            {
+                <div class="col-md-4">
+                    <div class="shard h-100">
+                        <h4 class="shard-title"><i class="bi bi-@group.Icon me-2"></i>@group.Name</h4>
+                        <p class="shard-desc">@group.Description</p>
+                        <div class="tag-list">
+                            @foreach (var item in group.Items)
+                            {
+                                <span class="tag-item">@item</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="shard h-100">
-            <h4>CatalogoApp Desktop</h4>
-            <p class="text-muted small">Windows Forms (.NET Framework) con acceso a datos vía ADO.NET.</p>
+</section>
+
+<section class="py-5" id="proyectos">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Portafolio GitHub</span>
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="section-subtitle">Repositorios e implementaciones en el ecosistema .NET y web.</p>
+        </div>
+        <div class="row g-4">
+            @foreach (var p in Data.Projects)
+            {
+                <div class="col-lg-6">
+                    <article class="flip-card" tabindex="0" role="button"
+                             aria-label="Ver vista previa de @p.Title" aria-pressed="false">
+                        <div class="flip-inner">
+                            <div class="flip-face flip-front shard">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h4 class="shard-title">@p.Title</h4>
+                                        <span class="flip-hint"><i class="bi bi-arrow-repeat"></i></span>
+                                    </div>
+                                    <p class="shard-desc">@p.Description</p>
+                                </div>
+                                <div class="tag-list">
+                                    @foreach (var t in p.Tags)
+                                    {
+                                        <span class="tag-item">@t</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="flip-face flip-back">
+                                @if (!string.IsNullOrEmpty(p.ImageUrl))
+                                {
+                                    <img src="@p.ImageUrl" alt="Vista previa de @p.Title" class="flip-image" loading="lazy" />
+                                }
+                                <div class="flip-links">
+                                    @if (!string.IsNullOrEmpty(p.DemoUrl))
+                                    {
+                                        <a class="glass-btn" href="@p.DemoUrl" target="_blank" rel="noopener">
+                                            <i class="bi bi-globe"></i> Ver proyecto
+                                        </a>
+                                    }
+                                    @if (!string.IsNullOrEmpty(p.RepoUrl))
+                                    {
+                                        <a class="glass-btn glass-btn-outline" href="@p.RepoUrl" target="_blank" rel="noopener">
+                                            <i class="bi bi-github"></i> Repositorio
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
         </div>
     </div>
-</div>
+</section>
+
+<section class="py-5" id="experiencia">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Trayectoria</span>
+            <h2 class="section-title">Experiencia &amp; Formación</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="shard h-100">
+                    <h4 class="shard-title"><i class="bi bi-briefcase me-2"></i>Experiencia Laboral</h4>
+                    @foreach (var e in Data.Experience)
+                    {
+                        <div class="timeline-item">
+                            <div class="timeline-role">@e.Role</div>
+                            <div class="timeline-company">@e.Company</div>
+                            <div class="timeline-date">@e.Period</div>
+                            <p class="shard-desc mb-0">@e.Description</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shard h-100">
+                    <h4 class="shard-title"><i class="bi bi-award me-2"></i>Certificaciones</h4>
+                    @foreach (var c in Data.Certifications)
+                    {
+                        <div class="cert-item">
+                            <div class="d-flex justify-content-between align-items-start gap-2">
+                                <div>
+                                    <div class="timeline-role">@c.Title</div>
+                                    <div class="timeline-company">@c.Issuer</div>
+                                </div>
+                                <span class="cert-badge">@c.Status</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" id="contacto">
+    <div class="container">
+        <div class="hero-glass-card text-center">
+            <span class="eyebrow">Contacto</span>
+            <h2 class="section-title">&iquest;Hablamos?</h2>
+            <p class="section-subtitle mb-4">Disponible para equipos de desarrollo backend o fullstack .NET.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <a class="glass-btn" href="mailto:@Data.Email"><i class="bi bi-envelope-fill"></i> @Data.Email</a>
+                <a class="glass-btn glass-btn-outline" href="tel:@Data.Phone"><i class="bi bi-telephone-fill"></i> @Data.Phone</a>
+            </div>
+        </div>
+    </div>
+</section>
