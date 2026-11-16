@@ -1,7 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Serve wwwroot assets when running outside the published output (e.g. dotnet run, Production env).
+builder.WebHost.UseStaticWebAssets();
+
+// Windows EventLog blocked on this machine (access denied) — log to console only.
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<PortfolioV2._0.Services.IPortfolioData, PortfolioV2._0.Services.PortfolioData>();
 
 var app = builder.Build();
 
